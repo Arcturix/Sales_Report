@@ -3,7 +3,7 @@ import java.util.*;
 public class Quarterly_Report {
 	
 	// Create a constant for the months in a year
-	static int months = 6;
+	static int months = 12;
 	
 	// line of code needed in all Java programs 
 	public static void main(String[] args) {
