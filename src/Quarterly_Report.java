@@ -3,7 +3,7 @@ import java.util.*;
 public class Quarterly_Report {
 	
 	// Create a constant for the months in a year
-	static int months = 12;
+	static int months = 6;
 	
 	// line of code needed in all Java programs 
 	public static void main(String[] args) {
@@ -17,13 +17,37 @@ public class Quarterly_Report {
 		
 		//Start the program with an introduction
 		System.out.println("--- Welcome to the Quarterly Report ---\n");
-		getDepartment(electricalSales, kitchenSales);
-		qSales(electricalSales, "Electrical");
-		newTargets(electricalSales, "Electrical");
-		qTax(electricalSales, "Electrical");
+		startProgram(electricalSales, kitchenSales);
+		//qSales(electricalSales, "Electrical");
+		//newTargets(electricalSales, "Electrical");
+		//qTax(electricalSales, "Electrical");
 		
 	}
 	
+	private static void startProgram(double[] electricalSales, double[] kitchenSales) {
+		Scanner keyboard = new Scanner(System.in);
+		boolean exit = false;
+		
+			System.out.println("Please select an option:");
+			System.out.println("1. Enter Sales Data");
+			System.out.println("2. Run a Report:");
+			System.out.println("3. Exit:");
+			
+			int choice = keyboard.nextInt();
+			
+			switch (choice) {
+			case 1:
+				getDepartment(electricalSales, kitchenSales);
+				break;
+			case 2:
+				//reports go here
+				break;
+			default:
+				System.out.println("Invalid choice. Please choose an option from the list");
+			
+		}
+		
+	}
 	//ADD a new method. What do you want to do? 'Enter Sales?' OR 'Run a Report?'
 	
 	//defining a method to find the department so we can enter data
