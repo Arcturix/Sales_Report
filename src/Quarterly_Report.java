@@ -40,7 +40,8 @@ public class Quarterly_Report {
 				getDepartment(electricalSales, kitchenSales, keyboard);
 				break;
 			case 2:
-				//reports go here
+				qSales(electricalSales, "Electrical");
+				qSales(kitchenSales, "Kitchen");
 				break;
 			case 3:
 				exit = true;
@@ -97,8 +98,10 @@ public class Quarterly_Report {
 		int quarter = 0;
 		for (int month = 0; month < months; month +=3) {
 			quarterlySales = salesData[month] + salesData[month +1] + salesData[month+2];
-			System.out.println("Sales for Q"+(quarter+=1)+ ": " +quarterlySales);
+			System.out.println(Department + "Sales for Q"+(quarter+=1)+ ": " +quarterlySales);
 		}
+		
+		System.out.println("---END OF REPORT---\n");
 		
 	}
 	
