@@ -30,8 +30,10 @@ public class Quarterly_Report {
 		do {
 			System.out.println("Please select an option:");
 			System.out.println("1. Enter Sales Data");
-			System.out.println("2. Run a Report");
-			System.out.println("3. Exit");
+			System.out.println("2. REPORT: Total Sales");
+			System.out.println("3. REPORT: New Sales Targets");
+			System.out.println("4. REPORT: Calculate Tax");
+			System.out.println("5. Exit");
 			
 			choice = keyboard.nextInt();
 			
@@ -44,6 +46,18 @@ public class Quarterly_Report {
 				qSales(kitchenSales, "Kitchen");
 				break;
 			case 3:
+				System.out.println("\n---NEW TARGETS REPORT---\n");
+				newTargets(electricalSales, "Electrical");
+				newTargets(kitchenSales, "Kitchen");
+				System.out.println("\n---END OF REPORT---\n");
+				break;
+			case 4:
+				System.out.println("\n---TAX REPORT---\n");
+				qTax(electricalSales, "Electrical");
+				qTax(kitchenSales, "Kitchen");
+				System.out.println("\n---END OF REPORT---\n");
+				break;
+			case 5:
 				exit = true;
 				break;
 			default:
@@ -54,7 +68,6 @@ public class Quarterly_Report {
 	} while (!exit);
 		
 	}
-	//ADD a new method. What do you want to do? 'Enter Sales?' OR 'Run a Report?'
 	
 	//defining a method to find the department so we can enter data
 	private static void getDepartment(double[] electricalSales, double[] kitchenSales, Scanner keyboard) {
@@ -78,7 +91,6 @@ public class Quarterly_Report {
 				
 		}
 		
-		//call the display sales here or in the switch?
 	}
 		
 	private static void enterSales(Scanner keyboard, double[] salesData, String department) {
@@ -96,12 +108,14 @@ public class Quarterly_Report {
 	private static void qSales(double[] salesData, String Department) {
 		double quarterlySales;
 		int quarter = 0;
+		
+		System.out.println("--- " +Department + " REPORT---\n");
 		for (int month = 0; month < months; month +=3) {
 			quarterlySales = salesData[month] + salesData[month +1] + salesData[month+2];
-			System.out.println(Department + "Sales for Q"+(quarter+=1)+ ": " +quarterlySales);
+			System.out.println(Department + " Sales for Q"+(quarter+=1)+ ": £" + String.format("%.2f", quarterlySales));
 		}
 		
-		System.out.println("---END OF REPORT---\n");
+		System.out.println("\n---END OF REPORT---\n");
 		
 	}
 	
@@ -110,15 +124,18 @@ public class Quarterly_Report {
 		double lastQAverage = lastQSales /3;
 		
 		double newerTargets = lastQAverage * 1.12;
-		System.out.println("New Targets for " +Department +": " + newerTargets);
+		System.out.println("New Targets for " +Department +": £" + String.format("%.2f", newerTargets));
 		
 	}
+	
+	
 	private static void qTax(double[] salesData, String Department) {
 		double quarterlyTax;
 		int quarter = 0;
+		
 		for (int month = 0; month < months; month +=3) {
 			quarterlyTax = (salesData[month] + salesData[month +1] + salesData[month+2])/100 * 17;
-			System.out.println("Tax for Q"+(quarter+=1)+ ": " +quarterlyTax);
+			System.out.println(Department+ " Tax for Q"+(quarter+=1)+ ": " +quarterlyTax);
 		}
 	}
 	
