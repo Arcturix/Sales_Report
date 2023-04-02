@@ -15,44 +15,49 @@ public class Quarterly_Report {
 		double[] softFurnishingSales = new double[months];
 		double[] accessoriesSales = new double[months];
 		
-		//Start the program with an introduction
+		Scanner keyboard = new Scanner(System.in);
+				
 		System.out.println("--- Welcome to the Quarterly Report ---\n");
-		startProgram(electricalSales, kitchenSales);
-		//qSales(electricalSales, "Electrical");
-		//newTargets(electricalSales, "Electrical");
-		//qTax(electricalSales, "Electrical");
-		
+
+		startProgram(electricalSales, kitchenSales, keyboard);
+				
 	}
 	
-	private static void startProgram(double[] electricalSales, double[] kitchenSales) {
-		Scanner keyboard = new Scanner(System.in);
+	private static void startProgram(double[] electricalSales, double[] kitchenSales, Scanner keyboard) {
 		boolean exit = false;
+		int choice;
 		
+		do {
 			System.out.println("Please select an option:");
 			System.out.println("1. Enter Sales Data");
-			System.out.println("2. Run a Report:");
-			System.out.println("3. Exit:");
+			System.out.println("2. Run a Report");
+			System.out.println("3. Exit");
 			
-			int choice = keyboard.nextInt();
+			choice = keyboard.nextInt();
 			
 			switch (choice) {
 			case 1:
-				getDepartment(electricalSales, kitchenSales);
+				getDepartment(electricalSales, kitchenSales, keyboard);
 				break;
 			case 2:
 				//reports go here
+				break;
+			case 3:
+				exit = true;
 				break;
 			default:
 				System.out.println("Invalid choice. Please choose an option from the list");
 			
 		}
 		
+	} while (!exit);
+		
 	}
 	//ADD a new method. What do you want to do? 'Enter Sales?' OR 'Run a Report?'
 	
 	//defining a method to find the department so we can enter data
-	private static void getDepartment(double[] electricalSales, double[] kitchenSales) {
-		Scanner keyboard = new Scanner(System.in);
+	private static void getDepartment(double[] electricalSales, double[] kitchenSales, Scanner keyboard) {
+		
 	//If possible, loop this with do - while department is between 1-3
 		System.out.println("Select your department from the list:");
 		System.out.println("1. Electrical");
@@ -73,7 +78,6 @@ public class Quarterly_Report {
 		}
 		
 		//call the display sales here or in the switch?
-		keyboard.close();
 	}
 		
 	private static void enterSales(Scanner keyboard, double[] salesData, String department) {
@@ -82,16 +86,11 @@ public class Quarterly_Report {
 		for (int month = 0; month < months; month++) {
 			System.out.print("Enter sales for month " +(month+1)+":" );
 			salesData[month] = keyboard.nextDouble();
+			
 		}
+		System.out.println("\nThank you for submitting your data.\n");
 
 		}
-	//This might be redundant
-	private static void displaySales(String department, double[] salesData) {
-		System.out.println("---" + department + " Sales---");
-		for (int month = 0; month < months; month++) {
-			System.out.println("Sales for month " +(month+1)+": " +salesData[month]);
-		}
-	}
 	
 	private static void qSales(double[] salesData, String Department) {
 		double quarterlySales;
